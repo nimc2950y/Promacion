@@ -38,3 +38,90 @@ public class Ejercicio1 {
     }
 }
 
+public class Ejercicio1 {
+    public static void main(String[] args) {
+        System.out.println("Imperativo = " + Binario(13));
+        System.out.println("Declarativo = " + BinarioD(13));
+
+    }
+    public static String Binario(int n) {
+        if (n == 0) {
+            return "0";
+        }
+        String binario = "";
+        while (n > 0) {
+            binario = (n % 2) + binario;
+            n = n / 2;
+        }
+        return binario;
+    }
+    public static String  BinarioD(int n) {
+        return Integer.toBinaryString(n);
+    }
+}
+
+public class Ejercicio2 {
+    public static void main(String[] args) {
+        String texto1 = "Hola";
+        String texto2 = "AEIOU xyz";
+
+        String noVocales1 = sinvocales(texto1);
+        System.out.println("sin vocales : \"" + noVocales1 + "\"");
+        System.out.println();
+
+        String noVocales2 = sinvocalesd(texto2);
+        System.out.println("sin vocales : \"" + noVocales2 + "\"");
+        System.out.println();
+    }
+    public static String sinvocales(String texto) {
+        String resultado = "";
+
+        for (int i = 0; i < texto.length(); i++) {
+            char caracter = texto.charAt(i);
+            char caracterMinuscula = Character.toLowerCase(caracter);
+
+            if (caracterMinuscula != 'a' &&
+                    caracterMinuscula != 'e' &&
+                    caracterMinuscula != 'i' &&
+                    caracterMinuscula != 'o' &&
+                    caracterMinuscula != 'u') {
+                resultado = resultado + caracter;
+            }
+        }
+        return resultado;
+    }
+    public static String sinvocalesd(String texto) {
+        return texto.replaceAll("(?i)[aeiou]", "");
+    }
+}
+
+public class Ejercicio3 {
+    public static void main(String[] args) {
+        String[] pruebas = {
+                "+593/099/123/4567",
+                "abc"
+        };
+
+        for (String prueba : pruebas) {
+            System.out.println("Entrada: \"" + prueba + "\"");
+            System.out.println("R:  \"" + solonumeros(prueba) + "\"");
+            System.out.println("R: \"" + solosnumerosd(prueba) + "\"");
+            System.out.println();
+        }
+    }
+    public static String solonumeros(String entrada) {
+        StringBuilder resultado = new StringBuilder();
+        for (int i = 0; i < entrada.length(); i++) {
+            char caracter = entrada.charAt(i);
+            if (caracter >= '0' && caracter <= '9') {
+                resultado.append(caracter);
+            }
+        }
+        return resultado.toString();
+    }
+
+    public static String solosnumerosd(String entrada) {
+        return entrada.replaceAll("\\D", "");
+    }
+
+}
